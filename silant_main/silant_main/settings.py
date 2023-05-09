@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'rest_framework',
     'allauth',
     'allauth.account',
     'bootstrap5',
     'accounts',
     'services',
+    'api_silant',
 ]
 
 SITE_ID = 1

@@ -1,0 +1,14 @@
+{% extends 'default.html' %}
+{% load auth_extras %}
+{% load static %}
+
+
+{% block content %}
+    <h1 class="api_h1">Список API</h1>
+    <ul class="list_api">
+    {% for resource in object_list %}
+        <li><a href="{{ resource.url }}">{{ resource.name }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% endblock content %}

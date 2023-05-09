@@ -9,6 +9,7 @@ urlpatterns = [
   path('admin/', admin.site.urls),
   path('accounts/', include('accounts.urls')),
   path('', include('services.urls')),
+  path('api_silant/', include('api_silant.urls')),
 ]
 urlpatterns += [re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,}),]
 

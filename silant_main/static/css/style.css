@@ -327,3 +327,12 @@ footer {
     margin-top: 10px;
     margin-right: 15px;
 }
+
+.api_h1 {
+    margin: 50px;
+}
+
+.list_api {
+    margin: 50px;
+    list-style-type: none;
+}
