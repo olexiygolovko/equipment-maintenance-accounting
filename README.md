@@ -1,26 +1,26 @@
-Разработка сервиса для компании "Силант"
+Development of a service for the company "Silant"
 
 
-Сервис хранит следующие данные о складской технике «Силант»:
+The service stores the following data about Silant warehouse equipment:
 
-    комплектация погрузчика;
-    место использования;
-    истории обслуживания, поломок и ремонта.
+     loader equipment;
+     place of use;
+     history of maintenance, breakdowns and repairs.
 
-В сервисе реализована авторизация, в том числе различные роли: гость, клиент, сервисная организация и менеджер.
-У каждой роли настроен свой уровень доступа к просмотру и редактированию данных.
+The service implements authorization, including various roles: guest, client, service organization and manager.
+Each role has its own level of access to viewing and editing data.
 
-API проекта будет доступно для авторизованных пользователей по ссылке - http://127.0.0.1:8000/api_silant/
+The project API will be available to authorized users via the link - http://127.0.0.1:8000/api_silant/
 
-Приложил доступы для тестирования в файле pass.txt
+Attached access for testing in the file pass.txt
 
-Целевая аудитория сервиса — это все, кто имеют отношение к работе с погрузчиками.
+The target audience of the service is everyone who is involved in working with forklifts.
 
-А именно:
+Namely:
 
-    эксплуатанты техники: те, кто покупают технику;
-    сервисные организации: те, кто её чинят;
-    представители производителя техники: те, кто производят технику, то есть сами ЧЗСА.
+     equipment operators: those who buy equipment;
+     service organizations: those who repair it;
+     representatives of the equipment manufacturer: those who produce the equipment, that is, ChZSA themselves.
 
 
 
