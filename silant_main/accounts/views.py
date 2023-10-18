@@ -44,7 +44,7 @@ class CreateAccount(PermissionRequiredMixin, CreateView):
         id = User.objects.get(username=username).id
         user.password = make_password(form.cleaned_data.get("password"))
         user.save()
-        # Сразу создаем новую сервисную компанию в справочнике, если группа = 'service'
+        # We immediately create a new service company in the directory if the group = 'service'
         if group.filter(name='service').exists():
             object = Service_company(user_id=id, name=first_name, description="Отсутствует")
             object.save()
@@ -65,13 +65,13 @@ class EditAccount(PermissionRequiredMixin, UpdateView):
         first_name = form.cleaned_data.get("first_name")
         username = form.cleaned_data.get("username")
         id = User.objects.get(username=username).id
-        # Если есть связанная запись в справочнике сервисных компаний, то перезаписываем туда имя компании
+        # If there is a related entry in the directory of service companies, then rewrite the company name there
         if Service_company.objects.filter(user_id=id).exists():
             service_company = Service_company.objects.get(user_id=id)
             service_company.name = first_name
             service_company.save()
-        # Если группа = service, и нет связанной записи в справочнике сервисных к., то создаем запись (если создали
-        # аккаунт с другой группой, затем сменили ее на 'service').
+        # If group = service, and there is no associated entry in the service directory, then create an entry (if you have created
+         # account with a different group, then changed it to 'service').
         if group.filter(name='service').exists() and not Service_company.objects.filter(user_id=id).exists():
             object = Service_company(user_id=id, name=first_name, description="Отсутствует")
             object.save()

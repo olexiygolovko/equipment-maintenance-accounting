@@ -5,26 +5,26 @@
 
 {% block content %}
 
-<h5 class="center">Данные ТО:</h5>
+<h5 class="center">Maintenance Data:</h5>
 <div class="center">
     <table style="border-bottom: none; border-top: none;">
-    <tr><td>Зав. №  машины:</td><td>{{ maintenance.car }}</td></tr>
-    <tr><td>Сервисная организация:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#service_company"><b>{{ maintenance.service_company }}</b></a></td></tr>
-    <tr><td>Вид ТО:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#type_maintenance"><b>{{ maintenance.type_maintenance }}</b></a></td></tr>
-    <tr><td>Дата проведения ТО:</td><td>{{ maintenance.maintenance_date }}</td></tr>
-    <tr><td>Наработка мотто/часов:</td><td>{{ maintenance.operating_time }}</td></tr>
-    <tr><td>Номер заказа-наряда:</td><td>{{ maintenance.order }}</td></tr>
-    <tr><td>Дата заказа-наряда:</td><td>{{ maintenance.order_date }}</td></tr>
+    <tr><td>Machine Factory Number:</td><td>{{ maintenance.car }}</td></tr>
+    <tr><td>Service Company:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#service_company"><b>{{ maintenance.service_company }}</b></a></td></tr>
+    <tr><td>Maintenance Type:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#type_maintenance"><b>{{ maintenance.type_maintenance }}</b></a></td></tr>
+    <tr><td>Maintenance Date:</td><td>{{ maintenance.maintenance_date }}</td></tr>
+    <tr><td>Operating Hours/Kilometers:</td><td>{{ maintenance.operating_time }}</td></tr>
+    <tr><td>Work Order Number:</td><td>{{ maintenance.order }}</td></tr>
+    <tr><td>Work Order Date:</td><td>{{ maintenance.order_date }}</td></tr>
     </table>
 </div>
 <br>
 <div class="center">
-    <a href="{% url 'maintenance' %}" class="button medium">Назад</a>
+    <a href="{% url 'maintenance' %}" class="button medium">Back</a>
     {% if perms.services.change_maintenance %}
-        <a href="{{ request.get_full_path }}/edit" class="button medium">Редактировать</a>
+        <a href="{{ request.get_full_path }}/edit" class="button medium">Edit</a>
     {% endif %}
     {% if perms.services.delete_maintenance %}
-        <a href="{{ request.get_full_path }}/delete" class="button medium">Удалить</a>
+        <a href="{{ request.get_full_path }}/delete" class "button medium">Delete</a>
     {% endif %}
 </div>
 
@@ -32,13 +32,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        Описание из справочника:<br><br>
+        Description from the Reference Book:<br><br>
         {% if maintenance.service_company.description %}
             {{ maintenance.service_company.description }}
         {% else %}
-            Описание отсутствует :(
+            Description not available :(
         {% endif %}
-        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Закрыть</button>
+        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -46,14 +46,14 @@
 <div class="modal" tabindex="-1" id="type_maintenance">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body">
-        Описание из справочника:<br><br>
+      <div class "modal-body">
+        Description from the Reference Book:<br><br>
         {% if maintenance.type_maintenance.description %}
             {{ maintenance.type_maintenance.description }}
         {% else %}
-            Описание отсутствует :(
+            Description not available :(
         {% endif %}
-        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Закрыть</button>
+        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

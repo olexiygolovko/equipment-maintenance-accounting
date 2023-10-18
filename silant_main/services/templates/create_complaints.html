@@ -3,10 +3,9 @@
 {% block bootstrap_css %}{% bootstrap_css %}{% endblock bootstrap_css %}
 {% load auth_extras %}
 
-
 {% block content %}
     <div class="left-right">
-        <p class="select_car">Выберите машину</p>
+        <p class="select_car">Select a Machine</p>
         <select class="form-select" style='margin: 0 0 5px 25px;' onchange="window.location.href = this.options[this.selectedIndex].value">
             <option value="{{select_car.id}}">{{ select_car }}</option>
             {% for car in cars %}
@@ -22,11 +21,9 @@
         {% bootstrap_form form layout='horizontal' %}
         <div class="center">
             {% buttons %}
-            <a class="button medium" href="{% url 'complaints' %}" role="button">отмена</a>
-            <button type="submit" class="button medium">сохранить</button>
+            <a class="button medium" href="{% url 'complaints' %}" role="button">Cancel</a>
+            <button type="submit" class a="button medium">Save</button>
             {% endbuttons %}
         </div>
     </form>
-
 {% endblock content %}
-

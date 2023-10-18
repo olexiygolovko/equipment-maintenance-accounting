@@ -31,12 +31,12 @@
 
 html {
     font-family: "PT-Astra-Sans_Regular";
-    line-height: 1.5; /* Высота строки для всех браузеров */
-    -webkit-text-size-adjust: 100%; /* фикс размера шрифта в iOS при повороте экрана */
-    -ms-text-size-adjust: 100%; /* фикс размера шрифта в ms при повороте экрана */
-    -moz-text-size-adjust: 100%; /* фикс размера шрифта в mozilla при повороте экрана */
-    -ms-overflow-style: scrollbar; /* стандартные полосы прокрутки */
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  /* убираем цвет подсветки ссылки при касании */
+    line-height: 1.5; /* Line height for all browsers */
+    -webkit-text-size-adjust: 100%; /* fixed font size in iOS when rotating the screen */
+    -ms-text-size-adjust: 100%; /* fix font size in ms when rotating the screen */
+    -moz-text-size-adjust: 100%; /* fix font size in mozilla when rotating the screen */
+    -ms-overflow-style: scrollbar; /* standard scroll bars */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  /* remove the link highlight color when touched */
 }
 
 body {
@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    /*Иначе bootstrap5 перебивает((*/
+    /*Otherwise bootstrap5 interrupts((*/
     text-decoration: none !important;
 }
 p {
@@ -64,7 +64,7 @@ input {
     color: var(--silant_black);
 }
 
-/* Фильтрация */
+/* Filtration */
 .select_car {
     width: 73%;
     padding: 0 2px 0 0;
@@ -220,13 +220,13 @@ footer {
 }
 
 .center {
-    /* Выстраивание элементов горизонтально, в центре контейнера */
+    /* Arranging elements horizontally, in the center of the container */
     display: -webkit-flex;
     display: flex;
     justify-content: center;
     text-align: center;
 }
-    /* Выстраивание элементов горизонтально, без отступа от краев контейнера */
+    /* Arranging elements horizontally, without indentation from the edges of the container */
 .left-right {
     display: -webkit-flex;
     display: flex;

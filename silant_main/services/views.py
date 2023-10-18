@@ -34,7 +34,7 @@ class Index(FormMixin, ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        #Для вывода информации из справочников по клику на значение
+      #To display information from reference books by clicking on a value
         context['technique_model'] = Technique_model.objects.all()
         context['engine_model'] = Engine_model.objects.all()
         context['transmission_model'] = Transmission_model.objects.all()
@@ -106,7 +106,7 @@ class InfoItem(PermissionRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        #Для вывода информации из справочников по клику на значение
+        #To display information from reference books by clicking on a value
         context['technique_model'] = Technique_model.objects.all()
         context['engine_model'] = Engine_model.objects.all()
         context['transmission_model'] = Transmission_model.objects.all()
@@ -148,22 +148,22 @@ class MaintenanceList(PermissionRequiredMixin, ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        # Очищаем переменные session при получении параметра "clear"
+        # Clear session variables when receiving the "clear" parameter
         if self.request.GET.get('clear'):
             self.request.session.pop('order_by2', None)
-            self.request.session.pop('tm', None) #вид ТО
-            self.request.session.pop('cr', None) #зав.номер машины
-            self.request.session.pop('sc', None) #сервисная компания для таблицы «ТО»
+            self.request.session.pop('tm', None) #type of maintenance
+            self.request.session.pop('cr', None) #serial number of the car
+            self.request.session.pop('sc', None) #service company for the “TO” table
 
-        # Перезаписываем order_by2 в session при получении url параметра "order_by" или maintenance_date
+        # Rewrite order_by2 in session when receiving the url parameter "order_by" or maintenance_date
         if self.request.GET.get('order_by'): self.request.session['order_by2'] = self.request.GET.get('order_by')
         if not 'order_by2' in self.request.session: self.request.session['order_by2'] = 'maintenance_date'
-        # Добавляем "__name" к переменной order_by для связанных объектов
+        # Add "__name" to the order_by variable for related objects
         order_by = self.request.session['order_by2']
         if order_by in ['type_maintenance', 'car', 'service_company']: order_by = order_by+"__name"
 
-        # Перезаписываем в session переменные для фильтрации при получении их параметра через url
-        # Отправляем значение фильтра в шаблон для отображения в SELECT
+        # Rewrite session variables for filtering when receiving their parameter via url
+        # Send the filter value to the template for display in SELECT
         if self.request.GET.get('tm'): self.request.session['tm'] = self.request.GET.get('tm')
         context['tm'] = self.request.session['tm'] if "tm" in self.request.session else '---'
         if self.request.GET.get('cr'): self.request.session['cr'] = self.request.GET.get('cr')
@@ -171,9 +171,9 @@ class MaintenanceList(PermissionRequiredMixin, ListView):
         if self.request.GET.get('sc'): self.request.session['sc'] = self.request.GET.get('sc')
         context['sc'] = self.request.session['sc'] if "sc" in self.request.session else '---'
 
-        # Готовим наборы объектов перед фильтрацией и для списка значений фильтра
+        # Preparing sets of objects before filtering and for the list of filter values
         qs = qs_filter = Maintenance.objects.all()
-        # фильтрация объектов
+        # object filtering
         if "tm" in self.request.session:
             filter = Type_maintenance.objects.get(name=self.request.session['tm']).id
             qs = qs.filter(type_maintenance=filter)
@@ -185,7 +185,7 @@ class MaintenanceList(PermissionRequiredMixin, ListView):
             qs = qs.filter(service_company=filter)
 
         if self.request.user.groups.filter(name='admin').exists() or self.request.user.groups.filter(name='manager').exists():
-            # Формируем список значений для select фильтров из доступного для клиента диапазона записей
+            # We form a list of values for select filters from the range of records available to the client
             context['type_maintenance'] = set(qs_filter.values_list('type_maintenance__name', flat=True))
             context['car'] = set(qs_filter.values_list('car__factory_number', flat=True))
             context['service_company'] = set(qs_filter.values_list('service_company__name', flat=True))
@@ -250,7 +250,7 @@ class MaintenanceItem(PermissionRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        #Для вывода информации из справочников по клику на значение
+        #To display information from reference books by clicking on a value
         context['type_maintenance'] = Type_maintenance.objects.all()
         context['service_company'] = Service_company.objects.all()
         return context
@@ -280,22 +280,22 @@ class ComplaintsList(PermissionRequiredMixin, ListView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
 
-        # Очищаем переменные session при получении параметра "clear"
+        # Clear session variables when receiving the "clear" parameter
         if self.request.GET.get('clear'):
             self.request.session.pop('order_by3', None)
-            self.request.session.pop('fn', None) #Узел отказа
-            self.request.session.pop('rm', None) #Способ восстановления
-            self.request.session.pop('sc3', None) #сервисная компания
+            self.request.session.pop('fn', None) #Failure node
+            self.request.session.pop('rm', None) #Recovery method
+            self.request.session.pop('sc3', None) #service company
 
-        # Перезаписываем order_by3 в session при получении url параметра "order_by" или date_of_refusal
+        # Rewrite order_by3 in session when receiving the url parameter "order_by" or date_of_refusal
         if self.request.GET.get('order_by'): self.request.session['order_by3'] = self.request.GET.get('order_by')
         if not 'order_by3' in self.request.session: self.request.session['order_by3'] = 'date_of_refusal'
-        # Добавляем "__name" к переменной order_by для связанных объектов
+        # Add "__name" to the order_by variable for related objects
         order_by = self.request.session['order_by3']
         if order_by in ['recovery_method', 'service_company']: order_by = order_by + "__name"
 
-        # Перезаписываем в session переменные для фильтрации при получении их параметра через url
-        # Отправляем значение фильтра в шаблон для отображения в SELECT
+        # Rewrite session variables for filtering when receiving their parameter via url
+        # Send the filter value to the template for display in SELECT
         if self.request.GET.get('fn'): self.request.session['fn'] = self.request.GET.get('fn')
         context['fn'] = self.request.session['fn'] if "fn" in self.request.session else '---'
         if self.request.GET.get('rm'): self.request.session['rm'] = self.request.GET.get('rm')
@@ -303,9 +303,9 @@ class ComplaintsList(PermissionRequiredMixin, ListView):
         if self.request.GET.get('sc'): self.request.session['sc3'] = self.request.GET.get('sc')
         context['sc'] = self.request.session['sc3'] if "sc3" in self.request.session else '---'
 
-        # Готовим наборы объектов перед фильтрацией и для списка значений фильтра
+        # Preparing sets of objects before filtering and for the list of filter values
         qs = qs_filter = Complaints.objects.all()
-        # фильтрация объектов
+        # object filtering
         if "fn" in self.request.session:
             qs = qs.filter(failure_node=self.request.session['fn'])
         if "rm" in self.request.session:
@@ -316,7 +316,7 @@ class ComplaintsList(PermissionRequiredMixin, ListView):
             qs = qs.filter(service_company=filter)
 
         if self.request.user.groups.filter(name='admin').exists() or self.request.user.groups.filter(name='manager').exists():
-            # Формируем список значений для select фильтров из доступного для клиента диапазона записей
+            # We form a list of values for select filters from the range of records available to the client
             context['failure_node'] = set(qs_filter.values_list('failure_node', flat=True))
             context['recovery_method'] = set(qs_filter.values_list('recovery_method__name', flat=True))
             context['service_company'] = set(qs_filter.values_list('service_company__name', flat=True))
@@ -377,7 +377,7 @@ class ComplaintsItem(PermissionRequiredMixin, DetailView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        #Для вывода информации из справочников по клику на значение
+        #To display information from reference books by clicking on a value
         context['description_failure'] = Description_failure.objects.all()
         context['recovery_method'] = Recovery_method.objects.all()
         context['service_company'] = Service_company.objects.all()
@@ -413,31 +413,31 @@ class ReferenceBookList(PermissionRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs.get('pk')
         if pk == 1:
-            context['name'] = "Модель техники"
+            context['name'] = "Vehicle model"
             context['list'] = Technique_model.objects.all()
         elif pk == 2:
-            context['name'] = "Модель двигателя"
+            context['name'] = "Engine model"
             context['list'] = Engine_model.objects.all()
         elif pk == 3:
-            context['name'] = "Модель трансмиссии"
+            context['name'] = "Transmission model"
             context['list'] = Transmission_model.objects.all()
         elif pk == 4:
-            context['name'] = "Модель ведущего моста"
+            context['name'] = "Drive axle model"
             context['list'] = Drive_axle_model.objects.all()
         elif pk == 5:
-            context['name'] = "Модель управляемого моста"
+            context['name'] = "Steering axle model"
             context['list'] = Steerable_axle_model.objects.all()
         elif pk == 6:
-            context['name'] = "Сервисная организация"
+            context['name'] = "Service organization"
             context['list'] = Service_company.objects.all()
         elif pk == 7:
-            context['name'] = "Вид ТО"
+            context['name'] = "Type of maintenance"
             context['list'] = Type_maintenance.objects.all()
         elif pk == 8:
-            context['name'] = "Характер отказа"
+            context['name'] = "Nature of failure"
             context['list'] = Description_failure.objects.all()
         elif pk == 9:
-            context['name'] = "Способ восстановления"
+            context['name'] = "Recovery method"
             context['list'] = Recovery_method.objects.all()
         return context
 
@@ -539,7 +539,7 @@ class ServiceCompanyEdit(PermissionRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.save()
-        # Перезаписываем имя сервисной компании в Аккаунте
+        # Rewrite the name of the service company in the Account
         name = form.cleaned_data.get("name")
         first_name = form.cleaned_data.get("user")
         id = User.objects.get(first_name=first_name).id

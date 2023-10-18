@@ -5,11 +5,11 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>
-			Мой Силант (
+			My Silant (
 			{% if user.is_authenticated %}
 				{{ user.username }}
 			{% else %}
-				Неавторизованный пользователь
+				Unauthenticated User
 			{% endif %})
 		</title>
 		<meta charset="utf-8">
@@ -38,23 +38,23 @@
 		<div class="header">
 			<div class="header_top">
 				<div class="logo">
-					<a href="{% url 'info' %}"><img class='header_logo' src="{% static 'images/Logotype_silant-transformed.png' %}"></a>
+					<a href="{% url 'info' %}"><img class='header_logo' src="{% static 'images/logo.png' %}" alt="Logo"></a>
 				</div>
-				<div class="header_contact">+7-8352-20-12-09</div>
+				<div class="header_contact">+1-8352-20-12-09</div>
 				<div><img class="telegram_logo" src="{% static 'images/telegram.png' %}"></div>
 				<div id="account_menu" class="account_menu">
 					{% if user.is_authenticated %}
 						{% if request.user|has_group:"admin" %}
-							<a class="button slim" href="{% url 'account_list' %}" role="button">Аккаунты</a>
+							<a class "button slim" href="{% url 'account_list' %}" role="button">Accounts</a>
 						{% endif %}
-						<a class="button slim" style='margin: 5px 12px;' href="/accounts/logout/" role="button">Выйти</a>
+						<a class "button slim" style='margin: 5px 12px;' href="/accounts/logout/" role="button">Log Out</a>
 					{% else %}
-						<a class="button slim" href="/accounts/login/" role="button">Авторизация</a>
+						<a class "button slim" href="/accounts/login/" role="button">Login</a>
 					{% endif %}
 				</div>
 			</div>
 			{% include "fragments/username_group.html" %}
-			<p class="center">Электронная сервисная книжка "Мой Силант"</p>
+			<p class="center">Electronic Service Book "My Silant"</p>
 
 		</div>
 	</header>
@@ -64,19 +64,11 @@
 		</div>
 	</main>
 	<footer>
-		<div class="footer">+7-8352-20-12-09</div>
+		<div class="footer">+1-8352-20-12-09</div>
 		<div><img class="telegram_logo" src="{% static 'images/telegram.png' %}"></div>
-		<div class="footer">Мой Силант {% now "Y" %}</div>
+		<div class="footer">My Silant {% now "Y" %}</div>
 	</footer>
 </div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-

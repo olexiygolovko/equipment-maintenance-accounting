@@ -51,15 +51,15 @@ class APIList(ListView):
     template_name = 'api_list.html'
     queryset = [
         {
-            'name': 'API - Машина',
+            'name': 'API - Machine',
             'url': reverse_lazy('car-list')
         },
         {
-            'name': 'API - ТО',
+            'name': 'API - TO',
             'url': reverse_lazy('maintenance-list')
         },
         {
-            'name': 'API - Рекламации',
+            'name': 'API - Complaints',
             'url': reverse_lazy('complaint-list')
         },
     ]

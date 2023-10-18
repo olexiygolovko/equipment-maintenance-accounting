@@ -4,22 +4,17 @@
 {% block content %}
 
     <div class="div_full_horizontal_content_space_around">
-        <a class="button_menu " href="{% url 'info' %}" role="button">Машины</a>
-        <a class="button_menu" href="{% url 'maintenance' %}" role="button">ТО</a>
-        <a class="button_menu active" href="{% url 'complaints' %}" role="button">Рекламации</a>
+        <a class="button_menu " href="{% url 'info' %}" role="button">Machines</a>
+        <a class="button_menu" href="{% url 'maintenance' %}" role="button">Maintenance</a>
+        <a class="button_menu active" href="{% url 'complaints' %}" role="button">Complaints</a>
     </div>
     {% if complaints %}
-        <h4 class="center">Информация о рекламациях вашей техники:</h4>
+        <h4 class="center">Information about your equipment complaints:</h4>
     {% endif %}
-
-
-<!--узел отказа;-->
-<!--способ восстановления;-->
-<!--сервисная компания для таблицы «Рекламация».-->
 
     <div class="left-right-wrap">
         <div class="div_item_filter">
-            <span class="select_name">сервисная компания</span>
+            <span class="select_name">Service Company</span>
             <select class="select_filter" onchange="window.location.assign('?sc=' + this.value);">
                 <option value="{{ sc }}">&nbsp;{{ sc }}&nbsp;</option>
                 {% for item in service_company %}
@@ -28,8 +23,8 @@
             </select>
         </div>
         <div class="div_item_filter">
-            <span class="select_name">узел отказа</span>
-            <select class="select_filter" onchange="window.location.assign('?fn=' + this.value);">
+            <span class="select_name">Failure Node</span>
+            <select class="select_filter" onchange="window.location.assign('?fn=' + this value);">
                 <option value="{{ fn }}">&nbsp;{{ fn }}&nbsp;</option>
                 {% for item in failure_node %}
                     <option value="{{ item }}">&nbsp;{{ item }}&nbsp;</option>
@@ -37,7 +32,7 @@
             </select>
         </div>
         <div class="div_item_filter">
-            <span class="select_name">способ восстановления</span>
+            <span class="select_name">Recovery Method</span>
             <select class="select_filter" onchange="window.location.assign('?rm=' + this.value);">
                 <option value="{{ rm }}">&nbsp;{{ rm }}&nbsp;</option>
                 {% for item in recovery_method %}
@@ -46,24 +41,23 @@
             </select>
         </div>
         <div class="div_item_filter">
-            <a title="Очистить фильтры" class="button_reset" href="?clear=clear" role="button">сбросить</a>
+            <a title="Clear Filters" class="button_reset" href="?clear=clear" role="button">Reset</a>
         </div>
     </div>
-
 
     {% if complaints %}
         <table class="small_font">
         <tr>
-            <th><a title="Сортировать" href="?order_by=car">&#9650; </a>Машина<br>
-                <a title="Сортировать" href="?order_by=service_company">&#9650; </a>Сервисная организация</th>
-            <th><a title="Сортировать" href="?order_by=date_of_refusal">&#9650; </a>Дата отказа<br>
-                <a title="Сортировать" href="?order_by=operating_time">&#9650; </a>Наработка</th>
-            <th><a title="Сортировать" href="?order_by=failure_node">&#9650; </a>Узел отказа<br>
-                <a title="Сортировать" href="?order_by=description_failure">&#9650; </a>Характер отказа</th>
-            <th><a title="Сортировать" href="?order_by=recovery_method">&#9650; </a>Способ восстановления<br>
-                <a title="Сортировать" href="?order_by=parts_used">&#9650; </a>Используемые запасные части</th>
-            <th><a title="Сортировать" href="?order_by=date_of_restoration">&#9650; </a>Дата восстановления<br>
-                <a title="Сортировать" href="?order_by=equipment_downtime">&#9650; </a>Время простоя техники</th>
+            <th><a title="Sort" href="?order_by=car">&#9650; </a>Machine<br>
+                <a title="Sort" href="?order_by=service_company">&#9650; </a>Service Company</th>
+            <th><a title="Sort" href="?order_by=date_of_refusal">&#9650; </a>Refusal Date<br>
+                <a title="Sort" href="?order_by=operating_time">&#9650; </a>Operating Hours</th>
+            <th><a title="Sort" href="?order_by=failure_node">&#9650; </a>Failure Node<br>
+                <a title="Sort" href="?order_by=description_failure">&#9650; </a>Failure Character</th>
+            <th><a title="Sort" href="?order_by=recovery_method">&#9650; </a>Recovery Method<br>
+                <a title="Sort" href="?order_by=parts_used">&#9650; </a>Used Spare Parts</th>
+            <th><a title="Sort" href="?order_by=date_of_restoration">&#9650; </a>Restoration Date<br>
+                <a title="Sort" href="?order_by=equipment_downtime">&#9650; </a>Equipment Downtime</th>
         </tr>
         {% for complaint in complaints %}
             <tr onclick="window.location.href='/complaints/{{ complaint.id }}'; return false" class="table_tr">
@@ -84,22 +78,22 @@
         <div class="center">
             {% if complaints %}
                 {% if request.user|has_group:"service" or request.user|has_group:"manager" or request.user|has_group:"admin" %}
-                    <a class="button slim" href="{% url 'create_complaints' %}" role="button">Добавить запись</a>
+                    <a class="button slim" href="{% url 'create_complaints' %}" role="button">Add Record</a>
                 {% endif %}
             {% endif %}
             {% if request.user|has_group:"manager" or request.user|has_group:"admin" %}
-                <a class="button slim" href="{% url 'reference_book' %}" role="button">Редактор справочников</a>
+                <a class="button slim" href="{% url 'reference_book' %}" role="button">Reference Book Editor</a>
             {% endif %}
         </div>
 
     {% else %}
-        <h4 class="center">Нет записей о рекламациях ваших машин, соответствующих запросу.</h4>
+        <h4 class="center">No records of equipment complaints matching your request.</h4>
     <div class="center">
         {% if request.user|has_group:"service" or request.user|has_group:"manager" or request.user|has_group:"admin" %}
-            <a class="button slim" href="{% url 'create_complaints' %}" role="button">Добавить первую запись о рекламации</a>
+            <a class="button slim" href="{% url 'create_complaints' %}" role="button">Add the first complaint record</a>
         {% endif %}
         {% if request.user|has_group:"manager" or request.user|has_group:"admin" %}
-            <a class="button slim" href="{% url 'reference_book' %}" role="button">Редактор справочников</a>
+            <a class="button slim" href="{% url 'reference_book' %}" role="button">Reference Book Editor</a>
         {% endif %}
     </div>
 

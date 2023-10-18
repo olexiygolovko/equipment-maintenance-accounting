@@ -1,24 +1,26 @@
-        <table>
+<table>
         <tr>
-            <th><a href="?order_by=factory_number">Номер машины</a><br>
-                <a href="?order_by=technique_model">Mодель техники</a></th>
-            <th><a href="?order_by=technique_model">Mодель техники</a></th>
-            <th><a href="?order_by=engine_model">Модель двигателя</a></th>
-            <th><a href="?order_by=engine_number">№ двигателя</a></th>
-            <th><a href="?order_by=transmission_model">модель трансмиссии</a></th>
-            <th><a href="?order_by=transmission_number">№ трансмиссии</a></th>
-            <th><a href="?order_by=drive_axle_model">модель ведущего моста</a></th>
-            <th><a href="?order_by=drive_axle_number">№ ведущего моста</a></th>
-            <th><a href="?order_by=steerable_axle_model">модель управляемого моста</a></th>
-            <th><a href="?order_by=steerable_axle_number">№ управляемого моста</a></th>
-            <th><a href="?order_by=supply_contract">договор поставки №, дата.</a></th>
-            <th><a href="?order_by=date_of_shipment_from_the_factory">Дата отгрузки с завода</a></th>
-            <th><a href="?order_by=consignee">Грузополучатель</a></th>
-            <th><a href="?order_by=delivery_address">Адрес поставки (эксплуатации)</a></th>
-            <th><a href="?order_by=equipment">Комплектация (доп. опции)</a></th>
-            <th><a href="?order_by=client">Клиент</a></th>
-            <th><a href="?order_by=service_company">Сервисная организация</a></th>
+            <th><a href="?order_by=factory_number">Machine Number</a><br>
+                <a href="?order_by=technique_model">Technique Model</a></th>
+            <th><a href="?order_by=technique_model">Technique Model</a></th>
+            <th><a href="?order_by=engine_model">Engine Model</a></th>
+            <th><a href="?order_by=engine_number">Engine Number</a></th>
+            <th><a href="?order_by=transmission_model">Transmission Model</a></th>
+            <th><a href="?order_by=transmission_number">Transmission Number</a></th>
+            <th><a href="?order_by=drive_axle_model">Drive Axle Model</a></th>
+            <th><a href="?order_by=drive_axle_number">Drive Axle Number</a></th>
+            <th><a href="?order_by=steerable_axle_model">Steerable Axle Model</a></th>
+            <th><a href="?order_by=steerable_axle_number">Steerable Axle Number</a></th>
+            <th><a href="?order_by=supply_contract">Supply Contract Number, Date</a></th>
+            <th><a href="?order_by=date_of_shipment_from_the_factory">Date of Shipment from the Factory</a></th>
+            <th><a href="?order_by=consignee">Consignee</a></th>
+            <th><a href="?order_by=delivery_address">Delivery Address (Usage)</a></th>
+            <th><a href="?order_by=equipment">Equipment (Additional Options)</a></th>
+            <th><a href="?order_by=client">Client</a></th>
+            <th><a href="?order_by=service_company">Service Organization</a></th>
         </tr>
+</table>
+    
         {% for car in cars %}
             <tr class="table_tr" >
                 <td><a href="/info/{{ car.id }}">{{ car.factory_number }}</a><br>

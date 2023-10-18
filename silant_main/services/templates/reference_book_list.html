@@ -2,31 +2,31 @@
 {% load auth_extras %}
 
 {% block content %}
-    <h4 class="center">Справочник "{{ name }}"</h4>
+    <h4 class="center">Directory "{{ name }}"</h4>
     <div class="center">
-        {% if name == "Сервисная организация" %}
-            <p><b>Новая запись в справочнике появится при создании аккаунта,<br> принадлежащего к группе "service" </b></p>
+        {% if name == "Service Company" %}
+            <p><b>A new entry in this directory will be created when an account belonging to the "service" group is created.</b></p>
         {% else %}
-            <a class="button slim" style="color:red" href="{{ request.path }}{{ item.id }}create/" role="button">Создать новую запись</a>
+            <a class="button slim" style="color:red" href="{{ request.path }}{{ item.id }}create/" role="button">Create a new entry</a>
         {% endif %}
     </div>
     <table>
-        <tr><th>Наименование:</th>
-            <th>Описание:</th>
-            <th>Редактирование:</th>
+        <tr><th>Name:</th>
+            <th>Description:</th>
+            <th>Edit:</th>
         </tr>
         {% for item in list %}
             <tr>
                 <td>{{ item.name }}</td>
                 <td>{{ item.description }}</td>
                 <td><a class="button slim" style="padding:0 10"
-                       href="{{ request.path }}{{ item.id }}/edit/" role="button">Изменить</a></td>
+                       href="{{ request.path }}{{ item.id }}/edit/" role="button">Edit</a></td>
             </tr>
         {% endfor %}
     </table>
     <br>
     <div class="center">
-       <a class="button medium" href="{% url 'reference_book' %}" role="button">назад</a>
+       <a class "button medium" href="{% url 'reference_book' %}" role="button">Back</a>
     </div>
 
 {% endblock content %}

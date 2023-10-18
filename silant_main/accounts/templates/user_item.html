@@ -4,18 +4,18 @@
 
 {% block content %}
 
-<h4 class="center">Данные аккаунта {{ user_item.name }}:</h4>
+<h4 class="center">Account details {{ user_item.name }}:</h4>
 
 <div class="center">
     <div class="column">
-         <p><b>Логин:</b></p>
-         <p><b>Имя: </b></p>
+         <p><b>Login:</b></p>
+         <p><b>Name: </b></p>
          <p><b>E-mail: </b></p>
-         <p><b>Роль: </b></p>
+         <p><b>Role: </b></p>
     </div>
         <div class="column">
          <p>{{ user_item.username }}</p>
-         <p>{% if user_item.first_name %}{{ user_item.first_name }}{% else %}Отсутствует{% endif %}</p>
+         <p>{% if user_item.first_name %}{{ user_item.first_name }}{% else %}Absent{% endif %}</p>
          <p>{% if user_item.email %}{{ user_item.email }}{% else %}Отсутствует{% endif %}</p>
          <p>{{ user_item.groups.all.0 }}</p>
     </div>
@@ -24,8 +24,8 @@
 
 <br>
 <div class="center">
-    <a href="{% url 'account_list' %}" class="button medium">Назад</a>
-    <a href="{{ request.path }}/edit" class="button medium">Редактировать</a>
+    <a href="{% url 'account_list' %}" class="button medium">Back</a>
+    <a href="{{ request.path }}/edit" class="button medium">Edit</a>
 </div>
 
 

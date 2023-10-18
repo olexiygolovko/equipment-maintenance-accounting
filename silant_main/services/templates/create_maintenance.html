@@ -3,10 +3,9 @@
 {% block bootstrap_css %}{% bootstrap_css %}{% endblock bootstrap_css %}
 {% load auth_extras %}
 
-
 {% block content %}
     <div class="left-right">
-        <p class="select_car">Выберите машину</p>
+        <p class="select_car">Select a Machine</p>
         <select class="form-select" style='margin: 0 0 5px 25px;' onchange="window.location.href = this.value">
             <option value="{{select_car.id}}">{{ select_car }}</option>
             {% for car in cars %}
@@ -17,22 +16,22 @@
         </select>
     </div>
 
-<!--    {{ select_car.service_company }}-->
-<!--    {% if select_car.service_company == None %}-->
-<!--        <h6 class="center">Для обслуживания данной машины пока не назначена сервисная компания</h6>-->
-<!--        <p>Постановку машины на обслуживание в сервисную компанию может сделать менеджер параметрах машины</p>-->
-<!--    {% else %}-->
-<!--        <h6 class="center">Данная машина находится на обслуживании сервисной компании {{ select_car.service_company }}</h6>-->
-<!--        <p>Если требуется изменить сервисную компанию, обратитесь к администратору</p>-->
-<!--    {% endif %}-->
+    <!--{{ select_car.service_company }}-->
+    <!--{% if select_car.service_company == None %}-->
+    <!--    <h6 class="center">No service company is currently assigned to this machine</h6>-->
+    <!--    <p>You can assign the machine to a service company in the machine's settings.</p>-->
+    <!--{% else %}-->
+    <!--    <h6 class="center">This machine is currently serviced by {{ select_car.service_company }}</h6>-->
+    <!--    <p>If you need to change the service company, please contact the administrator.</p>-->
+    <!--{% endif %}-->
 
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form layout='horizontal' %}
         <div class="center">
             {% buttons %}
-            <a class="button medium" href="{% url 'maintenance' %}" role="button">Отмена</a>
-            <button type="submit" class="button medium">Сохранить</button>
+            <a class="button medium" href="{% url 'maintenance' %}" role="button">Cancel</a>
+            <button type="submit" class="button medium">Save</button>
             {% endbuttons %}
         </div>
     </form>

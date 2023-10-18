@@ -3,18 +3,16 @@
 {% block bootstrap_css %}{% bootstrap_css %}{% endblock bootstrap_css %}
 {% load auth_extras %}
 
-
 {% block content %}
-<h4 class="center">Параметры машины:</h4>
+<h4 class="center">Machine Parameters:</h4>
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form layout='horizontal' %}
         <div class="center">
             {% buttons %}
-            <a class="button medium" href="{% url 'info' %}" role="button">Отмена</a>
-            <button type="submit" class="button medium">Сохранить</button>
+            <a class="button medium" href="{% url 'info' %}" role="button">Cancel</a>
+            <button type="submit" class="button medium">Save</button>
             {% endbuttons %}
         </div>
     </form>
-
 {% endblock content %}

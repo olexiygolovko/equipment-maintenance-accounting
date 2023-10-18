@@ -5,79 +5,78 @@
 
 {% block content %}
 
-<h5 class="center">Данные выбранной машины:</h5>
+<h5 class="center">Data of the Selected Machine:</h5>
 
 <div class="center">
     <table style="border-bottom: none; border-top: none;">
-    <tr><td>Зав. №  машины:</td><td>{{ car.factory_number }}</td></tr>
-    <tr><td>Модель техники:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#technique_model">
+    <tr><td>Machine Factory Number:</td><td>{{ car.factory_number }}</td></tr>
+    <tr><td>Technique Model:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#technique_model">
         <b>{{ car.technique_model }}</b></a></td></tr>
-    <tr><td>Модель двигателя:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#engine_model">
+    <tr><td>Engine Model:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#engine_model">
         <b>{{ car.engine_model }}</b></a></td></tr>
-    <tr><td>Зав. № двигателя:</td><td>{{ car.engine_number }}</td></tr>
-    <tr><td>Модель трансмиссии:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#transmission_model">
+    <tr><td>Engine Factory Number:</td><td>{{ car.engine_number }}</td></tr>
+    <tr><td>Transmission Model:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#transmission_model">
         <b>{{ car.transmission_model }}</b></a></td></tr>
-    <tr><td>Зав. № трансмиссии:</td><td>{{ car.transmission_number }}</td></tr>
-    <tr><td>Модель ведущего моста:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#drive_axle_model">
+    <tr><td>Transmission Factory Number:</td><td>{{ car.transmission_number }}</td></tr>
+    <tr><td>Drive Axle Model:</td><td><a href="#" data-bs-toggle="modal" data-bs-target="#drive_axle_model">
         <b>{{ car.drive_axle_model }}</b></a></td></tr>
-    <tr><td>Зав. № ведущего моста:</td><td>{{ car.drive_axle_number }}</td></tr>
-    <tr><td>Модель управляемого моста:</td>
+    <tr><td>Drive Axle Factory Number:</td><td>{{ car.drive_axle_number }}</td></tr>
+    <tr><td>Steerable Axle Model:</td>
         <td><a href="#" data-bs-toggle="modal" data-bs-target="#steerable_axle_model">
             <b>{{ car.steerable_axle_model }}</b></a></td></tr>
-    <tr><td>Зав. № управляемого моста:</td><td>{{ car.steerable_axle_number }}</td></tr>
-    <tr><td>Договор поставки №, дата:</td><td>{% if car.supply_contract %}{{ car.supply_contract }}
-        {% else %}Отсутствует{% endif %}</td></tr>
-    <tr><td>Дата отгрузки с завода:</td><td>{% if car.date_of_shipment_from_the_factory %}
-        {{ car.date_of_shipment_from_the_factory|date:"d.m.Y" }}{% else %}Отсутствует{% endif %}</td></tr>
-    <tr><td>Грузополучатель:</td><td>{% if car.consignee %}{{ car.consignee }}{% else %}Отсутствует{% endif %}</td></tr>
-    <tr><td>Адрес поставки (эксплуатации):</td><td>{% if car.delivery_address %}{{ car.delivery_address }}
-        {% else %}Отсутствует{% endif %}</td></tr>
-    <tr><td>Комплектация (доп. опции):</td><td>{% if car.equipment %}{{ car.equipment }}{% else %}Отсутствует
+    <tr><td>Steerable Axle Factory Number:</td><td>{{ car.steerable_axle_number }}</td></tr>
+    <tr><td>Supply Contract Number, Date:</td><td>{% if car.supply_contract %}{{ car.supply_contract }}
+        {% else %}Not Available{% endif %}</td></tr>
+    <tr><td>Date of Shipment from the Factory:</td><td>{% if car.date_of_shipment_from_the_factory %}
+        {{ car.date_of_shipment_from_the_factory|date:"d.m.Y" }}{% else %}Not Available{% endif %}</td></tr>
+    <tr><td>Consignee:</td><td>{% if car.consignee %}{{ car.consignee }}{% else %}Not Available{% endif %}</td></tr>
+    <tr><td>Delivery Address (Usage):</td><td>{% if car.delivery_address %}{{ car.delivery_address }}
+        {% else %}Not Available{% endif %}</td></tr>
+    <tr><td>Equipment (Additional Options):</td><td>{% if car.equipment %}{{ car.equipment }}{% else %}Not Available
         {% endif %}</td></tr>
-    <tr><td>Клиент:</td><td>{% if car.client %}{{ car.client }}{% else %}Отсутствует{% endif %}</td></tr>
-    <tr><td>Сервисная организация:</td><td>{% if car.service_company %}<a href="#" data-bs-toggle="modal" data-bs-target="#service_company"><b>{{ car.service_company }}</b></a>{% else %}Отсутствует
+    <tr><td>Client:</td><td>{% if car.client %}{{ car.client }}{% else %}Not Available{% endif %}</td></tr>
+    <tr><td>Service Organization:</td><td>{% if car.service_company %}<a href="#" data-bs-toggle="modal" data-bs-target="#service_company"><b>{{ car.service_company }}</b></a>{% else %}Not Available
         {% endif %}</td></tr>
     </table>
 </div>
 
 <br>
 <div class="center">
-    <a href="{% url 'info' %}" class="button medium">Назад</a>
+    <a href="{% url 'info' %}" class=" button medium">Back</a>
     {% if perms.silant.change_car %}
-        <a href="{{ request.path }}/edit" class="button medium">Редактировать</a>
+        <a href="{{ request.path }}/edit" class="button medium">Edit</a>
     {% endif %}
     {% if perms.silant.delete_car %}
-        <a href="{{ request.path }}/delete" class="button medium">Удалить</a>
+        <a href="{{ request.path }}/delete" class="button medium">Delete</a>
     {% endif %}
 </div>
-
 
 <div class="modal" tabindex="-1" id="technique_model">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        Описание из справочника:<br><br>
+        Description from the Directory:<br><br>
         {% if car.technique_model.description %}
             {{ car.technique_model.description }}
         {% else %}
-            Описание отсутствует :(
+            Description not available :(
         {% endif %}
-        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Закрыть</button>
+        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
 <div class="modal" tabindex="-1" id="engine_model">
-  <div class="modal-dialog">
+  <div class modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        Описание из справочника:<br><br>
+        Description from the Directory:<br><br>
         {% if car.engine_model.description %}
             {{ car.engine_model.description }}
         {% else %}
-            Описание отсутствует :(
+            Description not available :(
         {% endif %}
-        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Закрыть</button>
+        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -86,13 +85,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        Описание из справочника:<br><br>
+        Description from the Directory:<br><br>
         {% if car.transmission_model.description %}
             {{ car.transmission_model.description }}
         {% else %}
-            Описание отсутствует :(
+            Description not available :(
         {% endif %}
-        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Закрыть</button>
+        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -101,13 +100,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        Описание из справочника:<br><br>
+        Description from the Directory:<br><br>
         {% if car.drive_axle_model.description %}
             {{ car.drive_axle_model.description }}
         {% else %}
-            Описание отсутствует :(
+            Description not available :(
         {% endif %}
-        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Закрыть</button>
+        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -116,13 +115,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        Описание из справочника:<br><br>
+        Description from the Directory:<br><br>
         {% if car.steerable_axle_model.description %}
             {{ car.steerable_axle_model.description }}
         {% else %}
-            Описание отсутствует :(
+            Description not available :(
         {% endif %}
-        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Закрыть</button>
+        <br><br><button type=" button medium" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -131,13 +130,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        Описание из справочника:<br><br>
+        Description from the Directory:<br><br>
         {% if car.service_company.description %}
             {{ car.service_company.description }}
         {% else %}
-            Описание отсутствует :(
+            Description not available :(
         {% endif %}
-        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Закрыть</button>
+        <br><br><button type="button" class="button medium" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

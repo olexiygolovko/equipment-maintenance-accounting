@@ -5,14 +5,14 @@
 
 
 {% block content %}
-<h4 class="center">Данные нового аккаунта:</h4>
+<h4 class="center">New account details:</h4>
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form layout='horizontal' %}
         <div class="center">
             {% buttons %}
-            <a class="button medium" href="{% url 'account_list' %}" role="button">Отмена</a>
-            <button type="submit" class="button medium">Сохранить</button>
+            <a class="button medium" href="{% url 'account_list' %}" role="button">Cancel</a>
+            <button type="submit" class="button medium">Save</button>
             {% endbuttons %}
         </div>
     </form>

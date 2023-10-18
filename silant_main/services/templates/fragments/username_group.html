@@ -2,20 +2,20 @@
 {% if user.is_authenticated %}
 <!--    <div class="div_full_horizontal_content_space_around">-->
     <div class="center">
-        <div><b>Логин:</b> {{ user.username }}&emsp;</div>
+        <div><b>Login:</b> {{ user.username }}&emsp;</div>
         <div>
-            <b>Роль:</b>
+            <b>Role:</b>
             {% if request.user|has_group:"client" %}
-                Клиент
+                Client
             {% elif request.user|has_group:"service" %}
-                Сервисная компания
+                Service Company
             {% elif request.user|has_group:"manager" %}
-                Менеджер
+                Manager
             {% elif request.user|has_group:"admin" %}
-                Администратор
+                Administrator
             {% endif %}
         </div>
     </div>
 {% else %}
-        <div class="center"><p>Вы не авторизовались</p></div>
+        <div class="center"><p>You are not authenticated</p></div>
 {% endif %}

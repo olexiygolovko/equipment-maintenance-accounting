@@ -5,39 +5,38 @@
 
         {% if request.user|has_group:"manager" or request.user|has_group:"admin" %}
             <div>
-                <h4 class="center">Справочники раздела "Машины"</h4>
+                <h4 class="center">Directories in the "Machines" Section</h4>
                 <div class="center">
                     <a class="button medium" style="width: 270px"
-                           href="{% url 'reference_book' %}1/" role="button">Модель техники</a>
+                           href="{% url 'reference_book' %}1/" role="button">Equipment Model</a>
                     <a class="button medium" style="width: 270px"
-                           href="{% url 'reference_book' %}2/" role="button">Модель двигателя</a>
+                           href="{% url 'reference_book' %}2/" role="button">Engine Model</a>
                 </div>
                 <div class="center">
                     <a class="button medium" style="width: 270px"
-                           href="{% url 'reference_book' %}3/" role="button">Модель трансмиссии</a>
+                           href="{% url 'reference_book' %}3/" role="button">Transmission Model</a>
                     <a class="button medium" style="width: 270px"
-                           href="{% url 'reference_book' %}4/" role="button">Модель ведущего моста</a>
+                           href="{% url 'reference_book' %}4/" role="button">Drive Axle Model</a>
                 </div>
+                <div class "center">
+                    <a class="button medium" style="width: 270px"
+                           href="{% url 'reference_book' %}5/" role="button">Steerable Axle Model</a>
+                    <a class="button medium" style="width: 270px"
+                           href="{% url 'reference_book' %}6/" role="button">Service Company</a>
+                </div>
+                <h4 class="center">Directory in the "Maintenance" Section</h4>
                 <div class="center">
                     <a class="button medium" style="width: 270px"
-                           href="{% url 'reference_book' %}5/" role="button">Модель управляемого моста</a>
-                    <a class="button medium" style="width: 270px"
-                           href="{% url 'reference_book' %}6/" role="button">Сервисная организация</a>
+                        href="{% url 'reference_book' %}7/" role="button">Maintenance Type</a>
                 </div>
-                <h4 class="center">Справочник раздела "ТО"</h4>
+                <h4 class="center">Directories in the "Complaints" Section</h4>
                 <div class="center">
                     <a class="button medium" style="width: 270px"
-                        href="{% url 'reference_book' %}7/" role="button">Вид ТО</a>
-                </div>
-                <h4 class="center">Справочники раздела "Рекламации"</h4>
-                <div class="center">
+                       href="{% url 'reference_book' %}8/" role="button">Failure Type</a>
                     <a class="button medium" style="width: 270px"
-                       href="{% url 'reference_book' %}8/" role="button">Характер отказа</a>
-                    <a class="button medium" style="width: 270px"
-                       href="{% url 'reference_book' %}9/" role="button">Способ восстановления</a>
+                       href="{% url 'reference_book' %}9/" role="button">Recovery Method</a>
                 </div>
             </div><br><br>
         {% endif %}
 
 {% endblock content %}
-
